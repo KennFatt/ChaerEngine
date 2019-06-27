@@ -1,0 +1,4 @@
+#ifndef CE_STATEMANAGER_H
+#define CE_STATEMANAGER_H
+
+#endif
