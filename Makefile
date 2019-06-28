@@ -1,3 +1,4 @@
+BUILD_ID?=$(BUILD_ID)
 CC=gcc
 EXE_BUILD_DIR=out
 OBJ_BUILD_DIR=out/object
@@ -16,10 +17,10 @@ statemanager.o: src/statemanager.h
 	$(CC) -c src/statemanager.c -o $(OBJ_BUILD_DIR)/statemanager.o
 
 test: chaerengine.o statemanager.o
-	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(TEST_BUILT_NAME)
+	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(TEST_BUILT_NAME)_$(BUILD_ID)
 
 stable: chaerengine.o statemanager.o
-	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(STABLE_BUILT_NAME)
+	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(STABLE_BUILT_NAME)_$(BUILD_ID)
 
 clean:
 	rm $(OBJ_BUILD_DIR)/*.o
