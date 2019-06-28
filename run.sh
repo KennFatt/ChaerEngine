@@ -14,7 +14,7 @@ run() {
 }
 
 case "$1" in
-    clean_test | ct)
+    --clean-test | -ct)
         rm out/chaerengine_test_*
         clear
         echo "Cleaning all the test files."
