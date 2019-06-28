@@ -4,28 +4,28 @@
 /**
  * State's callback.
  */
-typedef unsigned int (*i_callback)();
-typedef unsigned int (*fl_callback)(float);
+typedef unsigned int (*i_callback_t)();
+typedef unsigned int (*fl_callback_t)(float);
 
 /**
  * State struct.
  */
 typedef struct
 {
-    int onInit;
-    int onDestroy;
-    float onUpdate;
-    float onDraw;
-} State;
+    int on_init;
+    int on_destroy;
+    float on_update;
+    float on_draw;
+} CE_State;
 
 /**
  * StageManager struct.
  */
 typedef struct
 {
-    State **stack;
+    CE_State **stack;
     int capacity;
-    int currentStack;
-} StageManager;
+    int top_stack;
+} CE_StageManager;
 
 #endif
