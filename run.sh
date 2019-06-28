@@ -10,7 +10,17 @@ build() {
 
 # Execute the output.
 run() {
-    ./out/*_$TIMESTAMP
+    ./out/*_$TIMESTAMP $TIMESTAMP
 }
 
-build && run
+case "$1" in
+    clean_test | ct)
+        rm out/chaerengine_test_*
+        clear
+        echo "Cleaning all the test files."
+    ;;
+
+    *)
+        build && run
+    ;;
+esac
