@@ -16,16 +16,16 @@ typedef struct
     int on_destroy;
     float on_update;
     float on_draw;
-} CE_State;
+} CE_STATE;
 
 /**
  * StageManager struct.
  */
 typedef struct
 {
-    CE_State **stack;
+    CE_STATE **stack;
     int capacity;
     int top_stack;
-} CE_StageManager;
+} CE_STAGEMANAGER;
 
 #endif
