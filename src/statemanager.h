@@ -28,4 +28,13 @@ typedef struct
     int top_stack;
 } CE_STAGEMANAGER;
 
+/**
+ * StageManager interface.
+ */
+int ce_stagemanager_init(CE_STAGEMANAGER *stage_mgr, int capacity);
+int ce_stagemanager_scale(CE_STAGEMANAGER *stage_mgr);
+int ce_stagemanager_destoy(CE_STAGEMANAGER *stage_mgr);
+int ce_stagemanager_udate(CE_STAGEMANAGER *stage_mgr, float dt);
+int ce_stagemanager_draw(CE_STAGEMANAGER *stage_mgr, float dt);
+
 #endif
