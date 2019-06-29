@@ -5,7 +5,7 @@
 int main(int argc, char **argv)
 {
     int app_st = 0;
-    char *build_id = argc == 1 ? argv[1] : "NaN";
+    char *build_id = argc == 2 ? argv[1] : "NaN";
 
     // run the unit test.
     unsigned int test_res = ce_unittest_run();
