@@ -1,2 +1,6 @@
 # Out folder.
 out/
+
+# Unit testing, this is unnecessary for public.
+unittest.c
+unittest.h
