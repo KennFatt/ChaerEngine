@@ -12,30 +12,31 @@ typedef unsigned int (*fl_callback_t)(float);
  */
 typedef struct
 {
-    int on_init;
-    int on_destroy;
-    float on_update;
-    float on_draw;
-} CE_STATE;
+    unsigned int state_id;
+    i_callback_t on_init;
+    i_callback_t on_destroy;
+    fl_callback_t on_update;
+    fl_callback_t on_draw;
+} ce_State;
 
 /**
  * StageManager struct.
  */
 typedef struct
 {
-    CE_STATE **stack;
+    ce_State **stack;
     int capacity;
     int ts_index;
-} CE_STAGEMANAGER;
+} ce_StateManager;
 
 /**
  * StageManager interface.
  */
-int ce_stagemanager_init(CE_STAGEMANAGER *stage_mgr, int capacity);
-int ce_stagemanager_scale(CE_STAGEMANAGER *stage_mgr);
-int ce_stagemanager_destroy(CE_STAGEMANAGER *stage_mgr);
-int ce_stagemanager_update(CE_STAGEMANAGER *stage_mgr, float dt);
-int ce_stagemanager_draw(CE_STAGEMANAGER *stage_mgr, float dt);
-CE_STATE *ce_stagemanager_get_state(CE_STAGEMANAGER *stage_mgr);
+int ce_statemanager_init(ce_StateManager *stage_mgr, int capacity);
+int ce_statemanager_scale(ce_StateManager *stage_mgr);
+int ce_statemanager_destroy(ce_StateManager *stage_mgr);
+int ce_statemanager_update(ce_StateManager *stage_mgr, float dt);
+int ce_statemanager_draw(ce_StateManager *stage_mgr, float dt);
+ce_State *ce_statemanager_get_state(ce_StateManager *stage_mgr);
 
 #endif

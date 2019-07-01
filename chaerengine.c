@@ -10,7 +10,7 @@ int main(int argc, char **argv)
     // run the unit test.
     unsigned int test_res = ce_unittest_run();
     if (test_res > 0) {
-        app_st = test_res;
+        app_st = (int) test_res;
     }
 
     printf("[#%s] Program closed with app_st -> %d\n", build_id, app_st);
