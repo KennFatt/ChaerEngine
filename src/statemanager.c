@@ -1,6 +1,11 @@
 #include <stdlib.h>
 #include "statemanager.h"
 
+unsigned int is_stack_full(ce_StateManager *sm)
+{
+    return sm->ts_index + 1 == sm->capacity;
+}
+
 int ce_statemanager_init(ce_StateManager *sm, int capacity)
 {
     sm->capacity = capacity;
@@ -19,4 +24,18 @@ int ce_statemanager_scale(ce_StateManager *sm)
 ce_State *ce_statemanager_get_state(ce_StateManager *sm)
 {
     return sm->stack[sm->ts_index];
+}
+
+ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st)
+{
+    if (is_stack_full(sm)) {
+        ce_statemanager_scale(sm);
+    }
+
+    sm->stack[++sm->ts_index] = st;
+    st->state_id = sm->ts_index;
+    if (st->on_init != NULL) {
+        st->on_init(st);
+    }
+    return st;
 }
