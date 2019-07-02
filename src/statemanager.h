@@ -33,12 +33,11 @@ typedef struct
  * StageManager interface.
  */
 int ce_statemanager_init(ce_StateManager *sm, int capacity);
-int ce_statemanager_scale(ce_StateManager *sm);
 int ce_statemanager_destroy(ce_StateManager *sm);
 int ce_statemanager_update(ce_StateManager *sm, float dt);
 int ce_statemanager_draw(ce_StateManager *sm, float dt);
 
-ce_State *ce_statemanager_get_state(ce_StateManager *sm);
+ce_State *ce_statemanager_get_cstate(ce_StateManager *sm);
 ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st);
 
 #endif
