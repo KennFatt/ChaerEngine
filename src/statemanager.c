@@ -21,9 +21,21 @@ int ce_statemanager_init(ce_StateManager *sm, int capacity)
     return 0;
 }
 
-ce_State *ce_statemanager_get_cstate(ce_StateManager *sm)
+ce_State *ce_statemanager_get_state(ce_StateManager *sm)
 {
-    return sm->ts_index < 0 ? NULL : sm->stack[sm->ts_index];
+    return sm->ts_index > -1 ? sm->stack[sm->ts_index] : NULL;
+}
+
+ce_State *ce_statemanager_get_state_by_id(ce_StateManager *sm, int index)
+{
+    for (int i = 0; i < (sm->ts_index + 1); ++i)
+    {
+        ce_State *selected_state = sm->stack[i];
+        if (selected_state->state_id == index) {
+            return selected_state;
+        }
+    }
+    return NULL;
 }
 
 ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st)
