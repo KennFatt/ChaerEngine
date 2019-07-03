@@ -37,9 +37,9 @@ int ce_statemanager_destroy(ce_StateManager *sm);
 int ce_statemanager_update(ce_StateManager *sm, float dt);
 int ce_statemanager_draw(ce_StateManager *sm, float dt);
 
-ce_State *ce_statemanager_get_state(ce_StateManager *sm);
-ce_State *ce_statemanager_get_state_by_id(ce_StateManager *sm, int index);
-ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st);
-ce_State *ce_statemanager_pop_state(ce_StateManager *sm);
+ce_State *ce_statemanager_state_get(ce_StateManager *sm);
+ce_State *ce_statemanager_state_get_by_id(ce_StateManager *sm, int index);
+ce_State *ce_statemanager_state_add(ce_StateManager *sm, ce_State *st);
+ce_State *ce_statemanager_state_pop(ce_StateManager *sm);
 
 #endif

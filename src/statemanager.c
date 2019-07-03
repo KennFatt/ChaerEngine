@@ -41,12 +41,12 @@ int ce_statemanager_destroy(ce_StateManager *sm)
     return 0;
 }
 
-ce_State *ce_statemanager_get_state(ce_StateManager *sm)
+ce_State *ce_statemanager_state_get(ce_StateManager *sm)
 {
     return sm->ts_index > -1 ? sm->stack[sm->ts_index] : NULL;
 }
 
-ce_State *ce_statemanager_get_state_by_id(ce_StateManager *sm, int index)
+ce_State *ce_statemanager_state_get_by_id(ce_StateManager *sm, int index)
 {
     for (int i = 0; i < (sm->ts_index + 1); ++i)
     {
@@ -58,7 +58,7 @@ ce_State *ce_statemanager_get_state_by_id(ce_StateManager *sm, int index)
     return NULL;
 }
 
-ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st)
+ce_State *ce_statemanager_state_add(ce_StateManager *sm, ce_State *st)
 {
     if (is_stack_full(sm)) {
         multiple_stack(sm);
@@ -72,20 +72,20 @@ ce_State *ce_statemanager_add_state(ce_StateManager *sm, ce_State *st)
     return st;
 }
 
-ce_State *ce_statemanager_pop_state(ce_StateManager *sm)
+ce_State *ce_statemanager_state_pop(ce_StateManager *sm)
 {
     if (sm->ts_index == 0) {
         return NULL;
     }
 
-    ce_State *top_state = ce_statemanager_get_state(sm);
+    ce_State *top_state = ce_statemanager_state_get(sm);
     if (top_state != NULL) {
         top_state->state_id = -1;
         if (top_state->on_destroy != NULL) {
             top_state->on_destroy();
         }
         sm->stack[sm->ts_index] = NULL;
-        return ce_statemanager_get_state_by_id(sm, --sm->ts_index);
+        return ce_statemanager_state_get_by_id(sm, --sm->ts_index);
     }
     return NULL; // this condition is never reached.
 }
