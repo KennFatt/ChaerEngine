@@ -4,7 +4,7 @@
 /**
  * State's callback.
  */
-typedef unsigned int (*i_callback_t)();
+typedef unsigned int (*i_callback_t)(void *);
 typedef unsigned int (*fl_callback_t)(float);
 
 /**
