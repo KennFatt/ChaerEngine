@@ -57,7 +57,7 @@ int ce_statemanager_update(ce_StateManager *sm, float dt)
 {
     ce_State *top_state = ce_statemanager_state_get(sm);
     if (top_state->on_update != NULL) {
-        top_state->on_update(dt);
+        top_state->on_update(top_state, dt);
         return 1;
     }
 
@@ -68,7 +68,7 @@ int ce_statemanager_draw(ce_StateManager *sm, float dt)
 {
     ce_State *top_state = ce_statemanager_state_get(sm);
     if (top_state->on_draw != NULL) {
-        top_state->on_draw(dt);
+        top_state->on_draw(top_state, dt);
         return 1;
     }
 

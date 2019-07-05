@@ -1,5 +1,6 @@
 BUILD_ID?=$(BUILD_ID)
 DEFAULT_BUILD_MODE?=$(DEFAULT_BUILD_MODE)
+LIB_FLAGS=-lSDL2
 CC=gcc
 EXE_BUILD_DIR=out/$(DEFAULT_BUILD_MODE)
 OBJ_BUILD_DIR=out/$(DEFAULT_BUILD_MODE)/object
@@ -18,11 +19,14 @@ unittest.o: unittest.h
 statemanager.o: src/statemanager.h
 	$(CC) -c src/statemanager.c -o $(OBJ_BUILD_DIR)/statemanager.o
 
-test: chaerengine.o statemanager.o unittest.o
-	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(TEST_BUILT_NAME)_$(BUILD_ID)
+graphics.o: src/graphics.h
+	$(CC) -c src/graphics.c -o $(OBJ_BUILD_DIR)/graphics.o
 
-stable: chaerengine.o statemanager.o unittest.o
-	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(BUILD_ID)/$(STABLE_BUILT_NAME)_$(BUILD_ID)
+test: chaerengine.o statemanager.o graphics.o unittest.o
+	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(TEST_BUILT_NAME)_$(BUILD_ID) $(LIB_FLAGS)
+
+stable: chaerengine.o statemanager.o graphics.o unittest.o
+	$(CC) $(OBJ_BUILD_DIR)/*.o -o $(EXE_BUILD_DIR)/$(BUILD_ID)/$(STABLE_BUILT_NAME)_$(BUILD_ID) $(LIB_FLAGS)
 
 clean:
 	rm $(OBJ_BUILD_DIR)/*.o
