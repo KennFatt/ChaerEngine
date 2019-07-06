@@ -13,7 +13,7 @@ int ce_graphics_init(ce_Graphics *graphics, char *title, int *width, int *height
         SDL_WINDOWPOS_UNDEFINED,
         *width,
         *height,
-        SDL_WINDOW_OPENGL);
+        SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 
     if (graphics->window == NULL) {
         SDL_Log("[ce_Graphics] An error occured while initialize the window: %s\n", SDL_GetError());
