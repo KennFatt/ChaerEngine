@@ -8,11 +8,11 @@ int ce_graphics_init(ce_Graphics *graphics, char *title, int *width, int *height
     graphics->w_height = *height;
 
     graphics->window = SDL_CreateWindow(
-        title,
+        graphics->w_title,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        *width,
-        *height,
+        graphics->w_width,
+        graphics->w_height,
         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 
     if (graphics->window == NULL) {
